@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://github.com/CodeFrit/teardown-touring-cars-ai-racing-spawn-fix">
+
+<title>Teardown Touring Cars - Spawn Fix</title>
+
+<meta name="description" content="Unofficial compatibility fix for Teardown Touring Cars (AI Racing). Fixes vehicle spawning problems caused by newer Teardown versions.">
+
+<style>
+:root {
+    --bg: #0b0d10;
+    --panel: #151922;
+    --panel2: #1c2230;
+    --text: #e8eaed;
+    --muted: #a6adbb;
+    --accent: #ffb000;
+    --accent2: #ff7b00;
+    --border: #2a3140;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at top, #252b38 0%, var(--bg) 45%);
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+    padding: 40px 20px 80px;
+}
+
+.hero {
+    text-align: center;
+    padding: 70px 20px 50px;
+}
+
+.hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    margin: 0 0 15px;
+    letter-spacing: -1px;
+}
+
+.hero span {
+    color: var(--accent);
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 1.15rem;
+    max-width: 700px;
+    margin: auto;
+}
+
+.buttons {
+    margin-top: 35px;
+}
+
+.button {
+    display: inline-block;
+    padding: 14px 28px;
+    margin: 6px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.secondary {
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--panel);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background: linear-gradient(180deg, var(--panel2), var(--panel));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.card h2 {
+    margin-top: 0;
+    color: white;
+}
+
+.card p, li {
+    color: var(--muted);
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+code {
+    background: #080a0e;
+    border: 1px solid #303746;
+    padding: 5px 8px;
+    border-radius: 6px;
+    color: #ffd479;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.path {
+    background: #080a0e;
+    border: 1px solid #303746;
+    padding: 12px;
+    border-radius: 8px;
+    color: #ffd479;
+    font-family: monospace;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.warning {
+    border-left: 4px solid var(--accent);
+}
+
+a {
+    color: #ffcc66;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffd98a;
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    color: var(--muted);
+    margin-top: 50px;
+    font-size: .9rem;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<section class="hero">
+
+<h1>
+    Teardown Touring Cars<br>
+    <span>Spawn Fix</span>
+</h1>
+
+<p>
+    An unofficial compatibility fix for the Steam Workshop mod
+    <strong>Teardown Touring Cars (AI Racing)</strong>.
+    This patch restores proper vehicle spawning behavior after
+    newer Teardown versions introduced initialization timing issues.
+</p>
+
+<div class="buttons">
+    <a class="button secondary" href="https://github.com/CodeFrit/teardown-touring-cars-ai-racing-spawn-fix">
+        View Repository
+    </a>
+</div>
+
+</section>
+
+
+<div class="grid">
+
+
+<div class="card">
+<h2>🔧 What this fixes</h2>
+
+<ul>
+<li>Spawning outside of the vehicle</li>
+<li>Spawning under the map or in invalid locations</li>
+<li>Races failing to start correctly</li>
+<li>Vehicle assignment happening before initialization completes</li>
+</ul>
+
+<p>
+Only <code>AVF_AI_V3.lua</code> has been modified.
+</p>
+
+</div>
+
+
+
+<div class="card">
+<h2>📦 Installation</h2>
+
+<p>
+Locate your installed copy of
+<strong>Teardown Touring Cars (AI Racing)</strong>.
+</p>
+
+<p>
+Default location:
+</p>
+
+<div class="path">
+Steam\steamapps\workshop\content\1167630\2668638370\
+</div>
+
+<ol>
+<li>Open the <code>scripts</code> folder.</li>
+<li>Find the original <code>AVF_AI_V3.lua</code>.</li>
+<li>Make a backup of the original file.</li>
+<li>Replace it with the fixed version.</li>
+<li>Launch Teardown and start a race through the mod manager.</li>
+</ol>
+
+</div>
+
+
+
+<div class="card">
+<h2>🧠 Why this exists</h2>
+
+<p>
+I encountered the same spawning issue while using the original mod.
+After investigating the Lua scripts, the problem was traced to
+<code>AVF_AI_V3.lua</code>.
+</p>
+
+<p>
+This patch was created to restore the original mod's functionality
+without changing the rest of the mod.
+</p>
+
+</div>
+
+
+
+<div class="card">
+<h2>🔍 Investigation</h2>
+
+<p>
+The issue was reproduced by testing the mod across multiple maps.
+The spawning failure occurred consistently and was not limited to a
+specific map.
+</p>
+
+<p>
+Further testing showed that manually entering vehicles worked correctly,
+meaning the issue was isolated to the spawning process.
+</p>
+
+<p>
+Reviewing the scripts revealed the use of
+<code>setPlayerVehicle()</code>.
+The issue appeared to be caused by newer Teardown versions returning
+a vehicle handle before the vehicle was fully initialized.
+</p>
+
+<p>
+The fix delays the call until the vehicle becomes available.
+Once successful, the temporary check disables itself.
+</p>
+
+</div>
+
+
+
+<div class="card">
+<h2>📜 Credits</h2>
+
+<p>
+Original mod:
+<br>
+
+<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2668638370">
+Teardown Touring Cars (AI Racing)
+</a>
+</p>
+
+<p>
+Original creator:
+<br>
+<strong>el Boydo</strong>
+</p>
+
+<p>
+This is an unofficial community-made compatibility fix.
+The original mod and its code belong to their respective creator(s).
+This repository only provides a fix for <code>AVF_AI_V3.lua</code>.
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<div class="card warning" style="margin-top:20px">
+
+<h2>⚠️ Notice</h2>
+
+<p>
+This is not an actively maintained project. It was created to fix
+the current spawning issue and may no longer be needed if the original
+mod is updated in the future.
+</p>
+
+<p>
+If this patch helped you, consider leaving a ⭐ on the repository.
+It helps other players find the fix.
+</p>
+
+</div>
+
+
+
+<footer>
+Unofficial community compatibility patch for Teardown Touring Cars (AI Racing)
+</footer>
+
+
+</div>
+
+</body>
+</html>
